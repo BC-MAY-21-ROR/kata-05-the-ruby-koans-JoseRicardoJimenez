@@ -15,6 +15,25 @@
 #
 def triangle(a, b, c)
   # WRITE THIS CODE
+  d, e, f=[a, b, c].sort
+
+  if a <= 0 || b <= 0 || c <= 0
+    raise TriangleError
+  else
+    if a == b && b == c
+      :equilateral
+    else 
+      if a == b || a == c || c == b
+        if d + e <= f
+          raise TriangleError
+        else
+          :isosceles
+        end
+      else
+        :scalene
+      end
+    end
+  end
 end
 
 # Error class used in part 2.  No need to change this code.
