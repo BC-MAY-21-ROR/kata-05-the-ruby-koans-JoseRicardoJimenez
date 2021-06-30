@@ -31,6 +31,35 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 
 def score(dice)
   # You need to write this method
+  #to know every greed roll
+  points = 0
+  counts = Hash.new(0) 
+  
+  dice.each do |value|
+    counts[value] += 1
+  end
+  
+  counts.each do |item,numFound|
+    
+    if item == 1 && numFound >= 3 then
+      points += 1000
+      numFound -= 3
+    end
+    
+    if item != 1 && numFound >= 3 then
+      points += item * 100
+      numFound -= 3
+    end
+  
+    if item == 1 && numFound <= 2 then 
+      points += 100 * numFound
+    end
+    
+    if item == 5 && numFound <=2 then
+      points += 50 * numFound
+    end
+  end
+  points
 end
 
 class AboutScoringProject < Neo::Koan
